@@ -26,7 +26,7 @@ var addCls = function( element , cls ){
 // 为元素删减样式
 var delCls = function( element , cls){
   var baseCls  = getCls(element);
-  if( baseCls.indexOf(cls) > -1){ // 更精确的需要用正则表达式 ,因为这里只用于切换 _animate_in 所以没事
+  if( baseCls.indexOf(cls) > -1){
       setCls( element,baseCls.split(cls).join(' ').replace(/\s+/g,' ') );
   }
   return ;
@@ -102,7 +102,7 @@ function playScreenAnimateDone(screenCls){
         element.setAttribute('class',baseCls.replace('_animate_init','_animate_done'));    
     }
 }
-//  第二步附加：初始化第一屏的动画（1. skipScreenAnimateInit 2.跳过 init ）
+//  第二步附加：初始化第一屏的动画
 
 setTimeout(function(){playScreenAnimateDone('.screen-1');},100)
 
@@ -137,7 +137,7 @@ window.onscroll = function () {
   }else{
       delCls( getElem('.header'),'header_status_black' );
 
-      switchNavItemsActive(0); // 后面添加的，不需要立刻
+      switchNavItemsActive(0); 
   }
 
   if(top > 800*1 ){
@@ -149,7 +149,7 @@ window.onscroll = function () {
   if( top > ( 800*1 - 100) ){
     playScreenAnimateDone('.screen-2');
 
-    switchNavItemsActive(1); // 后面添加的，不需要立刻
+    switchNavItemsActive(1); 
   }
   if( top > ( 800*2 - 100) ){
     playScreenAnimateDone('.screen-3');
@@ -167,7 +167,7 @@ window.onscroll = function () {
 
 //  第三步 导航条双向定位
 
-// 3.1 导航条 - 点击页面跳转
+//导航条 - 点击页面跳转
 
 var setNavJump = function(i,lib){
   var elem = lib[i];
@@ -179,12 +179,12 @@ var setNavJump = function(i,lib){
 for(var i=0;i<navItems.length;i++){
   setNavJump(i,navItems);
 }
-// 3.2  大纲-点击跳转
+// 点击跳转
 
 for(var i=0;i<outLineItems.length;i++){
   setNavJump(i,outLineItems);
 }
-// 3.3 双向绑定，回到 onscrollTop（移动 navIntes、outLineItems到顶固）、增加 clear 样式 函数
+//双向绑定，回到 onscrollTop
 
 
 // 滑动门
